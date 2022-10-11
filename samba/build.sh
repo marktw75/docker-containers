@@ -1,4 +1,9 @@
-docker build -t samba:latest .
+#!/bin/bash
 
-docker run --detach --publish 139:139 --publish 445:445 --volume /home/mark/dev/docker-containers/samba/etc:/etc/samba --volume /mnt/16tdisk/PublicShare:/usr/local/share --restart unless-stopped --name samba dperson/samba
+set -aex
+
+scriptDir=$(dirname "$0")
+image="samba-hk"
+
+docker build -t "${image}" "${scriptDir}"
 
