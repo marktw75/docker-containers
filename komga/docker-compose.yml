@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  komga:
+    container_name: komga
+    image: gotson/komga:latest
+    environment:
+      - TZ=Asia/Taipei
+    ports:
+      - 8341:25600
+    volumes:
+      - ${KOMPGA_CONFIG_DIR:-./config}:/config
+      - ${KOMPGA_DATA_DIR:-./data}:/data
+    user: "1000:1000"
+    restart: unless-stopped
+    networks:
+      - docker_network
+
+networks:
+  docker_network:
+    external: true 
